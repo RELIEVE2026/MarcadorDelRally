@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcador · Semana de Ingeniería 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#200f3d;--card:#f6f3ff;--ink:#200f3d;--lila:#b7a4fb;--lima:#d6f24f;--muted:#8f82b3;--bronce:#e8b98a}
+  *{box-sizing:border-box;margin:0}
+  body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:#fff;min-height:100vh;padding:24px 14px 48px;overflow-x:hidden}
+  body::before{content:"";position:fixed;top:90px;left:-60px;width:260px;height:34px;border-radius:20px;background:#b9d04d;transform:rotate(-10deg);z-index:0}
+  main{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
+  .owi{width:110px;margin:0 auto 4px}
+  .owi svg{width:100%;display:block;overflow:visible}
+  .owi img{width:100px;height:100px;border-radius:50%;border:5px solid var(--lima);object-fit:cover}
+  .saluda{transform-box:fill-box;transform-origin:50% 80%;animation:saluda 2.4s ease-in-out infinite}
+  @keyframes saluda{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-25deg)}80%{transform:rotate(10deg)}90%{transform:rotate(-20deg)}}
+  h1{font-weight:800;font-size:clamp(28px,7vw,40px);line-height:1.1;letter-spacing:-1px}
+  .sub{color:var(--lila);font-weight:500;margin:8px 0 14px;font-size:15px}
+  .live{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--lima);margin-bottom:22px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--lima);animation:p 1.6s infinite}
+  @keyframes p{50%{opacity:.25}}
+
+  /* PODIO */
+  .podio{display:flex;align-items:flex-end;justify-content:center;gap:10px;margin:0 auto 34px;max-width:560px;min-height:250px}
+  .slot{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center}
+  .slot .medal{font-size:30px;line-height:1}
+  .slot .pname{font-weight:700;font-size:14px;margin:4px 0 2px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .slot .ppts{font-weight:800;font-size:18px;color:var(--lima);margin-bottom:6px}
+  .slot .bloque{width:100%;border-radius:18px 18px 0 0;display:grid;place-items:center;font-weight:800;font-size:32px;color:var(--ink);transition:height .8s cubic-bezier(.2,.9,.3,1.2)}
+  .s1 .bloque{background:var(--lima);height:130px}
+  .s2 .bloque{background:var(--lila);height:95px}
+  .s3 .bloque{background:var(--bronce);height:70px}
+  .slot.cambio .pname,.slot.cambio .medal{animation:pop .6s}
+  @keyframes pop{30%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+  /* LISTA */
+  h2{font-size:15px;font-weight:700;color:var(--lila);margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase}
+  #lista{position:relative}
+  .row{position:absolute;left:0;right:0;height:60px;display:flex;align-items:center;gap:12px;background:var(--card);color:var(--ink);
+    border-radius:24px;padding:0 20px;box-shadow:0 5px 0 var(--lila);text-align:left;
+    transition:transform .8s cubic-bezier(.2,.9,.3,1),background .4s,box-shadow .4s}
+  .row.r1{background:var(--lima);box-shadow:0 5px 0 var(--lila)}
+  .row.r2{background:var(--lila);box-shadow:0 5px 0 #8f7be0}
+  .row.r3{background:var(--bronce);box-shadow:0 5px 0 #c99567}
+  .row.sube{animation:sube 1.4s}
+  @keyframes sube{0%,100%{filter:none}20%{filter:drop-shadow(0 0 14px var(--lima)) brightness(1.08)}}
+  .pos{font-weight:800;font-size:18px;width:34px;text-align:center}
+  .name{flex:1;min-width:0;font-weight:700;font-size:17px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pts{font-weight:800;font-size:22px}
+  .pts small{font-size:12px;font-weight:600;opacity:.6;margin-left:3px}
+  .delta{font-weight:700;font-size:13px;color:#1c8a3b;min-width:34px;text-align:right;opacity:0;transition:opacity .4s}
+  .delta.v{opacity:1}
+  .msg{color:var(--lila);font-size:14px;margin-top:18px}
+  .foot{margin-top:22px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="owi" id="logo">
+    <svg viewBox="0 0 120 120" aria-label="Owi, la mascota">
+      <ellipse cx="46" cy="110" rx="9" ry="4" fill="#ff8a3d"/><ellipse cx="74" cy="110" rx="9" ry="4" fill="#ff8a3d"/>
+      <path d="M26 34 L30 12 L48 26Z M94 34 L90 12 L72 26Z" fill="#f2b91d"/>
+      <ellipse cx="60" cy="68" rx="40" ry="42" fill="#f2b91d"/>
+      <ellipse cx="60" cy="82" rx="25" ry="26" fill="#ffe59a"/>
+      <ellipse cx="22" cy="74" rx="9" ry="20" fill="#d99a0b" transform="rotate(12 22 74)"/>
+      <g class="saluda"><ellipse cx="98" cy="74" rx="9" ry="20" fill="#d99a0b" transform="rotate(-12 98 74)"/></g>
+      <circle cx="43" cy="52" r="16" fill="#fff"/><circle cx="77" cy="52" r="16" fill="#fff"/>
+      <circle cx="45" cy="53" r="9" fill="#24123f"/><circle cx="75" cy="53" r="9" fill="#24123f"/>
+      <circle cx="48" cy="49" r="3.5" fill="#fff"/><circle cx="78" cy="49" r="3.5" fill="#fff"/>
+      <circle cx="30" cy="68" r="6" fill="#ff9db0" opacity=".7"/><circle cx="90" cy="68" r="6" fill="#ff9db0" opacity=".7"/>
+      <path d="M54 63 Q60 60 66 63 Q62 72 60 72 Q58 72 54 63Z" fill="#ff8a3d"/>
+      <path d="M52 76 Q60 84 68 76" stroke="#24123f" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h1>Marcador del Rally</h1>
+  <p class="sub">Semana de Ingeniería 2026 · D.F.M.I. UNISON Navojoa</p>
+  <div class="live"><span class="dot"></span><span id="status">Cargando…</span></div>
+
+  <div class="podio" id="podio">
+    <div class="slot s2"><div class="medal">🥈</div><div class="pname">—</div><div class="ppts"></div><div class="bloque">2</div></div>
+    <div class="slot s1"><div class="medal">🥇</div><div class="pname">—</div><div class="ppts"></div><div class="bloque">1</div></div>
+    <div class="slot s3"><div class="medal">🥉</div><div class="pname">—</div><div class="ppts"></div><div class="bloque">3</div></div>
+  </div>
+
+  <h2>Clasificación general</h2>
+  <div id="lista"></div>
+  <p class="msg" id="msg"></p>
+  <p class="foot">Se actualiza solo cada 5 segundos</p>
+</main>
+
+<script>
+/* ====== CONFIGURACIÓN ======
+   Lee la primera hoja del Sheet "Marcador Rally" (compartido: "Cualquier persona con el enlace: Lector").
+   Columna A = equipo, Columna B = puntos. Encabezados en la fila 1. */
+const CSV_URL = "https://docs.google.com/spreadsheets/d/1A-1sWaW2lA9q5tAA4ohTkyan3MV1ifz_8z575-Uo-jo/gviz/tq?tqx=out:csv&gid=0";
+const LOGO_URL = "";          // opcional: reemplaza a Owi por tu logo
+const REFRESCO_MS = 5000;
+/* ============================ */
+
+if (LOGO_URL) document.getElementById('logo').innerHTML = `<img src="${LOGO_URL}" alt="D.F.M.I.">`;
+
+const DEMO = [["Equipo 1",30],["Equipo 2",45],["Equipo 3",20],["Equipo 4",38],["Equipo 5",12]];
+const PITCH = 72;                       // alto de fila (60) + separación (12)
+const filas = new Map();                // nombre -> {el, pts, shown}
+const lista = document.getElementById('lista');
+let primera = true;
+let podioPrev = [];
+
+function parseCSV(t){
+  const rows=[];let r=[],c="",q=false;
+  for(let i=0;i<t.length;i++){
+    const ch=t[i];
+    if(q){ if(ch=='"'){ if(t[i+1]=='"'){c+='"';i++} else q=false } else c+=ch }
+    else if(ch=='"') q=true;
+    else if(ch==','){ r.push(c);c="" }
+    else if(ch=='\n'||ch=='\r'){ if(ch=='\r'&&t[i+1]=='\n')i++; r.push(c);c="";rows.push(r);r=[] }
+    else c+=ch;
+  }
+  if(c||r.length){r.push(c);rows.push(r)}
+  return rows;
+}
+
+function animarNumero(el, de, a){
+  const t0=performance.now(), dur=900;
+  (function paso(t){
+    const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3);
+    el.textContent=Math.round(de+(a-de)*e);
+    if(k<1) requestAnimationFrame(paso);
+  })(t0);
+}
+
+function pintar(datos){
+  // orden estable: más puntos primero; empate = orden del Sheet
+  const orden = datos.map((d,i)=>({n:d[0],p:d[1],i}))
+    .sort((a,b)=>b.p-a.p||a.i-b.i);
+
+  // quitar equipos que ya no existen
+  const vivos = new Set(orden.map(o=>o.n));
+  for(const [n,f] of filas) if(!vivos.has(n)){ f.el.remove(); filas.delete(n); }
+
+  lista.style.height = (orden.length*PITCH)+"px";
+
+  orden.forEach((o,idx)=>{
+    let f = filas.get(o.n);
+    if(!f){
+      const el=document.createElement('div');
+      el.className='row';
+      el.innerHTML='<div class="pos"></div><div class="name"></div><div class="delta"></div><div class="pts"><span class="num">0</span><small>pts</small></div>';
+      el.querySelector('.name').textContent=o.n;
+      el.style.transform=`translateY(${idx*PITCH}px)`;
+      lista.appendChild(el);
+      f={el,pts:0};
+      filas.set(o.n,f);
+    }
+    const el=f.el, num=el.querySelector('.num');
+    el.style.transform=`translateY(${idx*PITCH}px)`;
+    el.classList.remove('r1','r2','r3');
+    if(idx<3) el.classList.add('r'+(idx+1));
+    el.querySelector('.pos').textContent = idx===0?'🥇':idx===1?'🥈':idx===2?'🥉':(idx+1);
+
+    if(o.p!==f.pts){
+      animarNumero(num,f.pts,o.p);
+      if(!primera && o.p>f.pts){
+        const d=el.querySelector('.delta');
+        d.textContent='+'+(o.p-f.pts); d.classList.add('v');
+        setTimeout(()=>d.classList.remove('v'),4000);
+        el.classList.remove('sube'); void el.offsetWidth; el.classList.add('sube');
+      }
+      f.pts=o.p;
+    }
+  });
+
+  // podio
+  const slots=[...document.querySelectorAll('#podio .slot')]; // orden visual: 2,1,3
+  const mapa=[1,0,2];                                          // slot visual -> índice en ranking
+  const nuevo=orden.slice(0,3).map(o=>o.n);
+  slots.forEach((s,k)=>{
+    const o=orden[mapa[k]];
+    s.style.visibility=o?'visible':'hidden';
+    if(!o) return;
+    const nombre=s.querySelector('.pname');
+    if(nombre.textContent!==o.n){
+      nombre.textContent=o.n;
+      if(!primera){ s.classList.remove('cambio'); void s.offsetWidth; s.classList.add('cambio'); }
+    }
+    s.querySelector('.ppts').textContent=o.p+' pts';
+  });
+  podioPrev=nuevo;
+  primera=false;
+}
+
+async function cargar(){
+  const st=document.getElementById('status'), msg=document.getElementById('msg');
+  if(!CSV_URL){
+    pintar(DEMO.map(x=>[...x]));
+    st.textContent="Modo demo"; msg.textContent="Falta el enlace del Sheet en CSV_URL.";
+    return;
+  }
+  try{
+    const res=await fetch(CSV_URL+(CSV_URL.includes('?')?'&':'?')+'t='+Date.now(),{cache:'no-store'});
+    const datos=parseCSV(await res.text())
+      .filter(f=>f[0]&&f[0].trim()&&(!f[1]||f[1].trim()===""||!isNaN(parseFloat(f[1].replace(',','.')))))
+      .map(f=>[f[0].trim(), parseFloat((f[1]||"0").replace(',','.'))||0]);
+    pintar(datos);
+    st.textContent="En vivo · "+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    msg.textContent = datos.length ? "" : "Aún no hay equipos en el Sheet.";
+  }catch(e){
+    st.textContent="Sin conexión"; msg.textContent="No se pudo actualizar, reintentando…";
+  }
+}
+cargar();
+setInterval(cargar,REFRESCO_MS);
+</script>
+</body>
+</html>
